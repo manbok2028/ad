@@ -1,8 +1,10 @@
 import { readFile, writeFile, mkdir, readdir } from "node:fs/promises"
 import { createHash } from "node:crypto"
 import assert from "node:assert/strict"
+import { resolveDocumentPath, isInstructionDocument } from "./document-paths.mjs"
+// This audits historical Phase 4-B evidence. Run current UI checks separately.
 const root = new URL("../", import.meta.url)
-const checkpoint = new URL("../.phase4b-checkpoint-20261009/", root)
+const checkpoint = new URL("../../ad_restore_archive/.phase4b-checkpoint-20261009/", root)
 const digest = (data) => createHash("sha256").update(data).digest("hex")
 const baseline = JSON.parse(
   await readFile(new URL("baseline.json", checkpoint), "utf8"),
@@ -14,7 +16,7 @@ for (const file of baseline) {
     file.sha256,
     "복원 사본 일치",
   )
-  if (digest(await readFile(new URL(file.file, root))) !== file.sha256)
+  if (digest(await readFile(new URL(resolveDocumentPath(file.file), root))) !== file.sha256)
     changed.push(file.file)
 }
 for (const file of [
@@ -25,7 +27,6 @@ for (const file of [
   "src/canvasText.ts",
   "package.json",
   "vite.config.ts",
-  "AGENTS.md",
 ])
   assert(!changed.includes(file), `기존 계약·지침 변경: ${file}`)
 assert(
@@ -116,13 +117,13 @@ const decorativeEmoji = [...src.matchAll(/[\u{1F300}-\u{1FAFF}]/gu)].map(
 const report = {
   restoreCopiesVerified: baseline.length,
   changedExistingFiles: changed.filter(
-    (file) => !["DESIGN_MASTER.md", "HASE4B_MASTER.md"].includes(file),
+    (file) => !isInstructionDocument(file),
   ),
   externalInstructionChanges: changed.filter((file) =>
-    ["DESIGN_MASTER.md", "HASE4B_MASTER.md"].includes(file),
+    isInstructionDocument(file),
   ),
   updatedMasterReviewed: (
-    await readFile(new URL("HASE4B_MASTER.md", root), "utf8")
+    await readFile(new URL(resolveDocumentPath("HASE4B_MASTER.md"), root), "utf8")
   ).includes("ABSOLUTE PRIORITY"),
   preservedCore: true,
   originalAssetsPreserved: true,
@@ -132,7 +133,9 @@ const report = {
   seniorHierarchy: checks.clarity,
   threeSecondHeuristicNotExperiment: true,
   decorativeEmoji,
-  evidenceReport: "PHASE4B_FINAL_REPORT.md",
+  evidenceReport: resolveDocumentPath("PHASE4B_FINAL_REPORT.md"),
+  evidenceScope: "Historical Phase 4-B artifacts; not current UI acceptance",
+  currentMaintenancePolicy: "DESIGN_MAINTENANCE.md",
 }
 await mkdir(new URL("ui-review/phase4b-final/", root), { recursive: true })
 await writeFile(

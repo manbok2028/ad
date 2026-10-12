@@ -1,3 +1,6 @@
+> **Historical reference — not an active task.** Current work follows [AGENTS.md](../../AGENTS.md) and [DESIGN_MAINTENANCE.md](../../DESIGN_MAINTENANCE.md). Earlier redesign directives are superseded by the current maintenance mode.
+> Original location: `PHASE2_ASSET_PLAN.md`. File links have been rebased; historical prose and code paths retain their original context.
+
 # 홍보잇다 Phase 2 일러스트 제작 계획
 
 작성일: 2026-10-09. 공식 서비스명은 **홍보잇다**로 유지한다.

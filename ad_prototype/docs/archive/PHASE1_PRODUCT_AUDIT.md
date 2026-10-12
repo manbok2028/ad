@@ -1,3 +1,6 @@
+> **Historical reference — not an active task.** Current work follows [AGENTS.md](../../AGENTS.md) and [DESIGN_MAINTENANCE.md](../../DESIGN_MAINTENANCE.md). Earlier redesign directives are superseded by the current maintenance mode.
+> Original location: `PHASE1_PRODUCT_AUDIT.md`. File links have been rebased; historical prose and code paths retain their original context.
+
 # PHASE 1 — 홍보잇다 제품 감사 및 재설계 전략
 
 작성일: 2026-10-09 (한국 시간)

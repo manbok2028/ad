@@ -1,3 +1,6 @@
+> **Historical reference — not an active task.** Current work follows [AGENTS.md](../../AGENTS.md) and [DESIGN_MAINTENANCE.md](../../DESIGN_MAINTENANCE.md). Earlier redesign directives are superseded by the current maintenance mode.
+> Original location: `DESIGN_MASTER.md`. File links have been rebased; historical prose and code paths retain their original context.
+
 # MASTER INSTRUCTION — COMPLETE UI/UX REIMAGINATION
 # BRAND IDENTITY — MANDATORY
 

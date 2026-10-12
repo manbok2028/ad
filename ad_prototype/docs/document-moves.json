@@ -1,0 +1,92 @@
+[
+  {
+    "from": "DESIGN_MASTER.md",
+    "to": "docs/archive/DESIGN_MASTER.md",
+    "originalSha256": "fd81c733a462d3d6dc2bf230ed193764256b36e82890a62a8cb47fefa621672c"
+  },
+  {
+    "from": "HASE4B_MASTER.md",
+    "to": "docs/archive/PHASE4B_MASTER.md",
+    "originalSha256": "d4555bc7139f89bf47a100175b07ff054b268b5291ac4f9bad5dc77c307ebf65"
+  },
+  {
+    "from": "UI_DESIGN_REVIEW.md",
+    "to": "docs/archive/UI_DESIGN_REVIEW.md",
+    "originalSha256": "9cc8ba5c44a9017a692869b949636a7af21bde2a5c41f2ae8a43d64d37b1e582"
+  },
+  {
+    "from": "UI_NEXT_STEPS.md",
+    "to": "docs/archive/UI_NEXT_STEPS.md",
+    "originalSha256": "de2f169facd4139466abd34d0f04a31a22b198b6765c73a32c8f5cd1c18cb954"
+  },
+  {
+    "from": "PHASE1_PRODUCT_AUDIT.md",
+    "to": "docs/archive/PHASE1_PRODUCT_AUDIT.md",
+    "originalSha256": "764abd286ab3ae778f2facd30ab380663c05c0837452912545dac5066a4eb4d4"
+  },
+  {
+    "from": "PHASE2_ASSET_PLAN.md",
+    "to": "docs/archive/PHASE2_ASSET_PLAN.md",
+    "originalSha256": "441deb8306b3bfaa3cf4f32e3f8df3290ebb462e6bd1e245a7300b328d4ad1f2"
+  },
+  {
+    "from": "PHASE2_DESIGN_SYSTEM.md",
+    "to": "docs/archive/PHASE2_DESIGN_SYSTEM.md",
+    "originalSha256": "abb16d552769f7550daa0f630391fa8fd861829f813d842b0cd85b1ae9b41694"
+  },
+  {
+    "from": "PHASE2_IMPLEMENTATION.md",
+    "to": "docs/archive/PHASE2_IMPLEMENTATION.md",
+    "originalSha256": "c823509739614047480801f73fe333695c516e4a633c0012780b6eaaf6e92181"
+  },
+  {
+    "from": "PHASE2_PLATFORM_STRATEGY.md",
+    "to": "docs/archive/PHASE2_PLATFORM_STRATEGY.md",
+    "originalSha256": "ad566153b8afe40d9623959144ed172aca9278e206bdd4f23b5dd09961fd2909"
+  },
+  {
+    "from": "PHASE3_IMPLEMENTATION.md",
+    "to": "docs/archive/PHASE3_IMPLEMENTATION.md",
+    "originalSha256": "ca3f76197cdaad8cc67b9f94f7f87739f1d8d0c890bfdca5de76f597fd954068"
+  },
+  {
+    "from": "PHASE4A_BRAND_REVIEW.md",
+    "to": "docs/archive/PHASE4A_BRAND_REVIEW.md",
+    "originalSha256": "412737bb7244a43937f6c78151db2a3280707f741e69e0901ecdc673fb71d89f"
+  },
+  {
+    "from": "PHASE4B_ASSET_INVENTORY.md",
+    "to": "docs/archive/PHASE4B_ASSET_INVENTORY.md",
+    "originalSha256": "fb66af58361dcac67dfc0a32c0c4e84a2a85480302e29791bed4f8a27d7caa0c"
+  },
+  {
+    "from": "PHASE4B_ASSET_PLAN.md",
+    "to": "docs/archive/PHASE4B_ASSET_PLAN.md",
+    "originalSha256": "ece586270399b2dc8744c4ca55e98278477169992f0b50790d0bbce64e702b26"
+  },
+  {
+    "from": "PHASE4B_BRAND_APPLICATION.md",
+    "to": "docs/archive/PHASE4B_BRAND_APPLICATION.md",
+    "originalSha256": "7f937ab5e999767cbebf608494fa238b415d43861dff3d75e8aaa9ccc4bcfcd6"
+  },
+  {
+    "from": "PHASE4B_FINAL_REPORT.md",
+    "to": "docs/archive/PHASE4B_FINAL_REPORT.md",
+    "originalSha256": "59dea3914acd81a4d9262517934116ca4f5e9cc8cebb1d8250ec5732bf53ce63"
+  },
+  {
+    "from": "PHASE4B_INDEPENDENT_AUDIT.md",
+    "to": "docs/archive/PHASE4B_INDEPENDENT_AUDIT.md",
+    "originalSha256": "b52ab5d53e4b7db79293bae81c09ff7c36544c6d24a75c35aaf11b6f6f8c535d"
+  },
+  {
+    "from": "docs/PHASE4_REFINEMENT.md",
+    "to": "docs/archive/PHASE4_REFINEMENT.md",
+    "originalSha256": "2a47c5fa8585301c8da9b8243756d991fc67a34d741d037f695c0e950f0987fa"
+  },
+  {
+    "from": "LOCAL_PREVIEW.md",
+    "to": "docs/LOCAL_PREVIEW.md",
+    "originalSha256": "f89373ea79827feae551aaa539df08406076d921419a5c42f171fa4c6083657a"
+  }
+]

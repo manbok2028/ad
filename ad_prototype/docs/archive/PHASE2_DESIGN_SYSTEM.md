@@ -1,6 +1,9 @@
+> **Historical reference — not an active task.** Current work follows [AGENTS.md](../../AGENTS.md) and [DESIGN_MAINTENANCE.md](../../DESIGN_MAINTENANCE.md). Earlier redesign directives are superseded by the current maintenance mode.
+> Original location: `PHASE2_DESIGN_SYSTEM.md`. File links have been rebased; historical prose and code paths retain their original context.
+
 # 홍보잇다 Phase 2 — 브랜드와 디자인 시스템
 
-후속 변경: 사용자가 C안 ‘오가는 흐름’을 선택함에 따라 현재 로고·색상 기준은 [선택 브랜드 사용 기준](public/assets/branding/selected/BRAND_GUIDE.md)과 `src/design-tokens.css`를 따른다. 아래는 Phase 2 당시의 기록이다.
+후속 변경: 사용자가 C안 ‘오가는 흐름’을 선택함에 따라 현재 로고·색상 기준은 [선택 브랜드 사용 기준](../../public/assets/branding/selected/BRAND_GUIDE.md)과 `src/design-tokens.css`를 따른다. 아래는 Phase 2 당시의 기록이다.
 
 ## 브랜드 원칙
 공식 이름은 **홍보잇다**다. 홈페이지·메뉴·로그인 체험·푸터·브라우저 title·description·Open Graph에 같은 이름을 사용한다. 기존 연결을 뜻하는 ∞ 모양을 짙은 세이지 바탕의 간결한 기호로 정리했다. 독립적인 새 브랜드명을 만들지 않았다.

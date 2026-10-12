@@ -11,7 +11,8 @@ const root = new URL("../", import.meta.url)
 const name = process.argv[2] || ".phase4b-checkpoint-20261009"
 if (!/^\.phase4b-[a-z0-9-]+$/.test(name))
   throw Error("복원 폴더 이름 확인 필요")
-const dest = new URL(`../${name}/files/`, root)
+const archiveRoot = new URL("../../ad_restore_archive/", root)
+const dest = new URL(`${name}/files/`, archiveRoot)
 const marker = new URL("../baseline.json", dest)
 let exists = false
 try {
@@ -31,20 +32,24 @@ async function visit(relative) {
     else files.push(file)
   }
 }
-for (const dir of ["src/", "public/", "scripts/"]) await visit(dir)
+for (const dir of ["src/", "public/", "scripts/", "docs/", "feedback/"]) {
+  try { await access(new URL(dir, root)) } catch { continue }
+  await visit(dir)
+}
 files.push(
-  ...(await readdir(root)).filter((file) => /^PHASE4.*\.md$/.test(file)),
+  ...(await readdir(root)).filter((file) => /\.md$/i.test(file)),
 )
 files.push(
   "index.html",
   "package.json",
   "vite.config.ts",
-  "AGENTS.md",
-  "DESIGN_MASTER.md",
-  "HASE4B_MASTER.md",
+  "tsconfig.json",
+  "pnpm-lock.yaml",
+  "start-preview.cmd",
+  "start-preview.ps1",
 )
 const manifest = []
-for (const file of files) {
+for (const file of new Set(files)) {
   await cp(new URL(file, root), new URL(file, dest), { recursive: true })
   const sha256 = createHash("sha256")
     .update(await readFile(new URL(file, root)))

@@ -196,7 +196,6 @@ h3,
 }
 @media (max-width: 1023px) {
   .prototype-app main[data-app-scroll-container] { padding-bottom: 190px; }
-  .prototype-app:has(main input:not([type="radio"]):not([type="file"]):focus, main textarea:focus) .mobile-navigation { display: none; }
   .prototype-app:has(main input:not([type="radio"]):not([type="file"]):focus, main textarea:focus) .mobile-primary-bar {
     position: static;
     box-shadow: none;

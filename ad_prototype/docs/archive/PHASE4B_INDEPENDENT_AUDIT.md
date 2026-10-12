@@ -1,3 +1,6 @@
+> **Historical reference — not an active task.** Current work follows [AGENTS.md](../../AGENTS.md) and [DESIGN_MAINTENANCE.md](../../DESIGN_MAINTENANCE.md). Earlier redesign directives are superseded by the current maintenance mode.
+> Original location: `PHASE4B_INDEPENDENT_AUDIT.md`. File links have been rebased; historical prose and code paths retain their original context.
+
 # 홍보잇다 Phase 4-B 독립 완료 감사
 
 감사일: 2026-10-10. 판정: **부분 완료 / 최종 완료 승인 보류**.
@@ -38,9 +41,9 @@
 
 이는 모든 클릭이 실패한다는 주장이 아니라 **확인된 특정 위치·포커스 조건의 오류**다. 실물 휴대전화에서의 빈도는 미검증이다. 시니어 사용자는 눌렀는데 아무 반응이 없는 상태에서 다음 행동을 판단하기 어렵다.
 
-원인은 [입력 포커스에 따른 하단 메뉴 숨김](src/index.css:199)과 다시 나타나는 고정 메뉴 영역의 충돌이다. [결과 버튼](src/App.tsx:1454)의 처리 로직 자체는 키보드·중앙 클릭으로 작동했다.
+원인은 [입력 포커스에 따른 하단 메뉴 숨김](../../src/index.css#L199)과 다시 나타나는 고정 메뉴 영역의 충돌이다. [결과 버튼](../../src/App.tsx#L1454)의 처리 로직 자체는 키보드·중앙 클릭으로 작동했다. 링크의 줄 번호는 감사 당시 기준이며 현재 코드와 다를 수 있다.
 
-증거: [이벤트와 5개 비교 조건](ui-review/phase4b-independent-audit/next-action-reproduction.json), [실패 시 390px 화면](ui-review/phase4b-independent-audit/click-failure-390-touch.png).
+증거: [이벤트와 5개 비교 조건](../../ui-review/phase4b-independent-audit/next-action-reproduction.json), [실패 시 390px 화면](../../ui-review/phase4b-independent-audit/click-failure-390-touch.png).
 
 **보완 기준:** 포커스가 이동하는 동안 하단 메뉴가 눌리는 버튼을 덮지 않게 한다. 마우스·터치의 화면 중앙/하단, 입력 포커스 유무를 모두 포함해 한 번의 클릭으로 결과에 진입하는지 다시 검사해야 한다.
 
@@ -51,9 +54,9 @@
 - 포스터 UI에는 ‘우리 가게 새 소식’이라는 채널 머리글, 특징, 짧은 제품 설명이 표시된다. PNG에는 채널 머리글이 없고, 특징을 다른 위치·크기로 그린 뒤 `resultCopy`의 앞부분을 표시한다. 같은 입력에서도 배경 밝기·텍스트 구조·간격이 다르다.
 - 영상 UI는 사진의 CSS 확대와 가운데 특징 문구를 보여준다. 실제 MP4는 아래쪽 색상 면에 특징과 홍보 글을 그린 3초 영상이다. UI의 재생 버튼은 생성된 MP4를 재생하는 버튼이 아니다.
 
-원인은 HTML/CSS 확인 화면과 Canvas 저장 렌더러가 분리되어 있기 때문이다. [PNG 렌더러](src/App.tsx:935), [포스터 UI](src/App.tsx:1545), [영상 렌더러](src/App.tsx:1162), [영상 UI](src/App.tsx:1726)를 직접 확인했다.
+원인은 HTML/CSS 확인 화면과 Canvas 저장 렌더러가 분리되어 있기 때문이다. [PNG 렌더러](../../src/App.tsx#L935), [포스터 UI](../../src/App.tsx#L1545), [영상 렌더러](../../src/App.tsx#L1162), [영상 UI](../../src/App.tsx#L1726)를 직접 확인했다.
 
-증거: [포스터 UI](ui-review/phase4b-independent-audit/poster-ui-preview.png) / [실제 PNG](ui-review/phase4b-independent-audit/downloaded-poster.png), [영상 UI](ui-review/phase4b-independent-audit/video-ui-preview.png) / [실제 영상 1초 장면](ui-review/phase4b-independent-audit/downloaded-video-frame.png).
+증거: [포스터 UI](../../ui-review/phase4b-independent-audit/poster-ui-preview.png) / [실제 PNG](../../ui-review/phase4b-independent-audit/downloaded-poster.png), [영상 UI](../../ui-review/phase4b-independent-audit/video-ui-preview.png) / [실제 영상 1초 장면](../../ui-review/phase4b-independent-audit/downloaded-video-frame.png).
 
 문구를 길이에 맞춰 줄인다는 안내는 있지만, 렌더링 구성이 다르다는 문제까지 해결하지는 않는다. 사용자가 확인하고 저장한 결과를 신뢰할 수 있도록 실제 생성 결과를 확인 화면에 쓰거나 같은 렌더링 규칙을 사용해야 한다.
 
@@ -61,7 +64,7 @@
 
 실제 MP4는 해석·중간 장면 확인에 성공했지만, 최초로 해석한 장면은 검정이었다. 1초 지점은 정상적인 제품·문구 장면으로 확인됐다. 기록을 시작한 뒤 첫 Canvas 프레임을 요청하는 현재 순서도 확인했다.
 
-증거: [첫 프레임](ui-review/phase4b-independent-audit/downloaded-video-first-frame.png), [1초 프레임](ui-review/phase4b-independent-audit/downloaded-video-frame.png). 전체 영상이 검정이거나 파일이 손상됐다고 판정하지 않는다. 썸네일·첫 재생 장면 품질은 보완할 필요가 있다.
+증거: [첫 프레임](../../ui-review/phase4b-independent-audit/downloaded-video-first-frame.png), [1초 프레임](../../ui-review/phase4b-independent-audit/downloaded-video-frame.png). 전체 영상이 검정이거나 파일이 손상됐다고 판정하지 않는다. 썸네일·첫 재생 장면 품질은 보완할 필요가 있다.
 
 ## 3. 실제 검증한 범위
 
@@ -94,14 +97,14 @@
 
 로고는 `public/assets/branding/selected/`, 삽화는 `public/assets/illustrations/phase4b/`에 있다. 20개는 **서로 다른 삽화 20개가 아니라 로고 사용 변형 8개와 독립 장면 12개**다. 단색·반전은 동일 승인 형태의 목적별 변형이라는 점을 구분한다. 나머지 브랜드 변형이 모두 React 기본 화면에 표시된다고 주장하지 않는다.
 
-SVG의 네 글리프 순서 ‘홍보잇다’, 내장 raster 비사용, 실제 한글 모양, font license를 확인했다. [실제 파일 20개 모음](ui-review/phase4b-independent-audit/actual-20-assets.png)과 [파일별 해시·실제 화면 목록](ui-review/phase4b-independent-audit/evidence.json)이 근거다.
+SVG의 네 글리프 순서 ‘홍보잇다’, 내장 raster 비사용, 실제 한글 모양, font license를 확인했다. [실제 파일 20개 모음](../../ui-review/phase4b-independent-audit/actual-20-assets.png)과 [파일별 해시·실제 화면 목록](../../ui-review/phase4b-independent-audit/evidence.json)이 근거다.
 
 선택 전 C안의 `concept-c/symbol.webp`도 직접 열어 비교했다. 넓은 왼쪽 고리·상승하는 오른쪽 끝·남색 교차라는 승인 방향이 유지되며, 생성 픽셀을 그대로 쓴 파일이 아닌 정리된 SVG다. favicon은 `icon.svg`와 실제 해시가 같고, 터치 PNG의 실제 치수는 180×180px였다. 이 복사본·포맷 변환본은 20개 수에 추가하지 않았다.
 
 ### 390px의 화면과 파일 동작
 
-- [production 첫 화면](ui-review/phase4b-independent-audit/home-first-390.png): 읽어주기 y=8px, 시작 버튼 y≈445px, 3단계 안내 y≈572px, 예시 구역 y≈1027px. 사용자가 요청한 순서를 확인했다.
-- 초기 설명 입력란은 y=634.5px에 표시된다. [초기 입력 화면](ui-review/phase4b-independent-audit/details-initial-390.png)과 실제 값 수정 뒤의 화면을 별도로 확인했다.
+- [production 첫 화면](../../ui-review/phase4b-independent-audit/home-first-390.png): 읽어주기 y=8px, 시작 버튼 y≈445px, 3단계 안내 y≈572px, 예시 구역 y≈1027px. 사용자가 요청한 순서를 확인했다.
+- 초기 설명 입력란은 y=634.5px에 표시된다. [초기 입력 화면](../../ui-review/phase4b-independent-audit/details-initial-390.png)과 실제 값 수정 뒤의 화면을 별도로 확인했다.
 - 홈·사진·채널·설명·결과·빈 기록·로그인을 새 production 빌드에서 캡처했다. 확인한 화면에 가로 넘침과 이미지 누락이 없었다.
 - 설명·특징·주요 고객을 실제로 수정했다. 정상 경로와 오류 조건을 분리해 판정했다.
 - PNG의 실제 서명·1080×1350px 치수·내용을 확인했다. 마지막 검사 파일은 1,182,008 bytes다.

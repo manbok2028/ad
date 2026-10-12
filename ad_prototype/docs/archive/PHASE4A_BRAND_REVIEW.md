@@ -1,3 +1,6 @@
+> **Historical reference — not an active task.** Current work follows [AGENTS.md](../../AGENTS.md) and [DESIGN_MAINTENANCE.md](../../DESIGN_MAINTENANCE.md). Earlier redesign directives are superseded by the current maintenance mode.
+> Original location: `PHASE4A_BRAND_REVIEW.md`. File links have been rebased; historical prose and code paths retain their original context.
+
 # 홍보잇다 Phase 4-A — 로고 탐색 결과
 
 작성일: 2026-10-09. 당시 상태: **5개 시안 제작·검토 완료**.
@@ -9,10 +12,10 @@
 ## 검토 자료 열기
 
 - 로컬 비교 페이지: http://127.0.0.1:5173/brand-review/index.html
-- 서버 없이 열 수 있는 문서: [비교 페이지](public/brand-review/index.html)
-- 한눈에 보는 정적 이미지: [comparison.png](public/brand-review/comparison.png)
-- 원본·배포 파일 정보: [manifest.json](public/assets/branding/concepts/manifest.json)
-- 실제 생성 요청: [PROMPTS.md](design-assets/branding/PROMPTS.md)
+- 서버 없이 열 수 있는 문서: [비교 페이지](../../public/brand-review/index.html)
+- 한눈에 보는 정적 이미지: [comparison.png](../../public/brand-review/comparison.png)
+- 원본·배포 파일 정보: [manifest.json](../../public/assets/branding/concepts/manifest.json)
+- 실제 생성 요청: [PROMPTS.md](../../design-assets/branding/PROMPTS.md)
 
 PC에서는 다섯 시안을 나란히 보고, 모바일에서는 2열 또는 1열로 읽는다. 각 시안에 심볼, 한글 워드마크, 가로 조합, 밝은/어두운 배경, 실제 32×32·96×96px 심볼, 210px 가로 헤더 예시, 파일 저장 링크를 제공했다. 어두운 배경은 흰색 단색 표현이며 아직 완성된 반전 로고 원본을 별도 제작한 것은 아니다.
 

@@ -1,3 +1,6 @@
+> **Historical reference — not an active task.** Current work follows [AGENTS.md](../../AGENTS.md) and [DESIGN_MAINTENANCE.md](../../DESIGN_MAINTENANCE.md). Earlier redesign directives are superseded by the current maintenance mode.
+> Original location: `PHASE4B_ASSET_INVENTORY.md`. File links have been rebased; historical prose and code paths retain their original context.
+
 # 홍보잇다 Phase 4-B — 에셋 목록
 
 창작 단위는 **로고 구성 8개 + 목적이 다른 삽화 12개 = 20개**다. PNG→WebP 변환, 640/960px 크기, favicon·터치 PNG를 중복 합산하지 않는다. 승인한 C안 로고의 7개 기존 구성에 세로 조합을 추가해 완성했고, 삽화 12개는 이번 단계에서 새로 생성했다.

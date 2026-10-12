@@ -1,3 +1,6 @@
+> **Historical reference — not an active task.** Current work follows [AGENTS.md](../../AGENTS.md) and [DESIGN_MAINTENANCE.md](../../DESIGN_MAINTENANCE.md). Earlier redesign directives are superseded by the current maintenance mode.
+> Original location: `PHASE4B_BRAND_APPLICATION.md`. File links have been rebased; historical prose and code paths retain their original context.
+
 # 홍보잇다 — 선택한 C안 적용 결과
 
 후속 작업: 20개 에셋의 제작·실제 통합과 전체 검증은 [Phase 4-B 최종 보고서](PHASE4B_FINAL_REPORT.md)에 기록했다. 아래는 C안 선택 직후의 제한된 로고 적용 기록이다.
@@ -53,7 +56,7 @@
 
 - `src/BrandLogo.tsx`.
 - `scripts/build-selected-brand.mjs`, `scripts/verify-selected-brand.mjs`.
-- `public/assets/branding/selected/`: SVG 7종, 터치 PNG, 글꼴 라이선스, [사용 기준](public/assets/branding/selected/BRAND_GUIDE.md).
+- `public/assets/branding/selected/`: SVG 7종, 터치 PNG, 글꼴 라이선스, [사용 기준](../../public/assets/branding/selected/BRAND_GUIDE.md).
 - `design-assets/branding/before-c/favicon.svg`: 교체 전 favicon 보관.
 - 이 보고서.
 
@@ -62,8 +65,8 @@
 ## 확인 자료와 후속 범위
 
 - [적용 화면](http://127.0.0.1:5173/)
-- [원안과 정리한 로고 비교](ui-review/phase4b/brand-sheet.png)
-- [모바일 홈](ui-review/phase4b/home-390.png), [PC 홈](ui-review/phase4b/home-1440.png)
-- [검증 기록](ui-review/phase4b/verification.json)
+- [원안과 정리한 로고 비교](../../ui-review/phase4b/brand-sheet.png)
+- [모바일 홈](../../ui-review/phase4b/home-390.png), [PC 홈](../../ui-review/phase4b/home-1440.png)
+- [검증 기록](../../ui-review/phase4b/verification.json)
 
 선택 로고의 구현과 제한된 UI 적용은 완료했다. 기존 인물 삽화의 후속 재구성, 출력물 렌더러 정교화, 실물 기기·시니어 사용자 검증은 별도 후속 범위로 남는다. 기존 서비스의 예시 생성·수동 게시 방식과 미구현 백엔드 기능은 이번 브랜딩 변경으로 달라지지 않는다.

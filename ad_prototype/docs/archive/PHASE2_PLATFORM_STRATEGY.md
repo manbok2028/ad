@@ -1,3 +1,6 @@
+> **Historical reference — not an active task.** Current work follows [AGENTS.md](../../AGENTS.md) and [DESIGN_MAINTENANCE.md](../../DESIGN_MAINTENANCE.md). Earlier redesign directives are superseded by the current maintenance mode.
+> Original location: `PHASE2_PLATFORM_STRATEGY.md`. File links have been rebased; historical prose and code paths retain their original context.
+
 # 홍보잇다 Phase 2 — 홍보 채널 전략
 검토일: 2026-10-09. 순위와 난이도 평가는 공식 자료를 바탕으로 한 제품 설계 판단이며, 광고 성과를 보장하거나 이용자 통계를 추정한 결과가 아니다.
 

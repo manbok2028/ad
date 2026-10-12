@@ -1,3 +1,6 @@
+> **Historical reference — not an active task.** Current work follows [AGENTS.md](../../AGENTS.md) and [DESIGN_MAINTENANCE.md](../../DESIGN_MAINTENANCE.md). Earlier redesign directives are superseded by the current maintenance mode.
+> Original location: `docs/PHASE4_REFINEMENT.md`. File links have been rebased; historical prose and code paths retain their original context.
+
 Read `AGENTS.md`, `DESIGN_MASTER.md`, and all completed work from Phases 1–3.
 
 # PHASE 4 — AUTONOMOUS VISUAL QUALITY REFINEMENT & PROFESSIONAL PRODUCT POLISH

@@ -1,3 +1,6 @@
+> **Historical reference — not an active task.** Current work follows [AGENTS.md](../../AGENTS.md) and [DESIGN_MAINTENANCE.md](../../DESIGN_MAINTENANCE.md). Earlier redesign directives are superseded by the current maintenance mode.
+> Original location: `PHASE2_IMPLEMENTATION.md`. File links have been rebased; historical prose and code paths retain their original context.
+
 # 홍보잇다 Phase 2 구현 결과
 
 완료일: 2026-10-09. `AGENTS.md`, `DESIGN_MASTER.md`, `PHASE1_PRODUCT_AUDIT.md` 전체를 읽고 이번 Phase 2 요청의 실제 구현 범위를 적용했다. 기존 사용자 수정 문서는 변경하지 않았다.
@@ -21,13 +24,13 @@
 | 채널 비교·순위·비용/API 제약·Phase 3 | [PHASE2_PLATFORM_STRATEGY.md](PHASE2_PLATFORM_STRATEGY.md) |
 | 브랜드·토큰·컴포넌트·반응형 명세 | [PHASE2_DESIGN_SYSTEM.md](PHASE2_DESIGN_SYSTEM.md) |
 | 제작 전 자산 계획 | [PHASE2_ASSET_PLAN.md](PHASE2_ASSET_PLAN.md) |
-| 최종 생성 프롬프트 | [prompts.json](design-assets/illustrations/prompts.json) |
+| 최종 생성 프롬프트 | [prompts.json](../../design-assets/illustrations/prompts.json) |
 | 원본 PNG 4종 | `design-assets/illustrations/` |
 | 배포 WebP 5개(모바일 hero 포함) | `public/assets/illustrations/` |
-| 크기·용량 기록 | [asset-manifest.json](public/assets/illustrations/asset-manifest.json) |
-| 채널 설정·추천 데이터 | [channels.ts](src/channels.ts) |
-| 채널 선택·결과 다음 단계 | [ChannelPicker.tsx](src/ChannelPicker.tsx), [PublishingGuide.tsx](src/PublishingGuide.tsx) |
-| 공통 토큰 | [design-tokens.css](src/design-tokens.css) |
+| 크기·용량 기록 | [asset-manifest.json](../../public/assets/illustrations/asset-manifest.json) |
+| 채널 설정·추천 데이터 | [channels.ts](../../src/channels.ts) |
+| 채널 선택·결과 다음 단계 | [ChannelPicker.tsx](../../src/ChannelPicker.tsx), [PublishingGuide.tsx](../../src/PublishingGuide.tsx) |
+| 공통 토큰 | [design-tokens.css](../../src/design-tokens.css) |
 
 원본 스타일은 동일한 성인 사장님과 제품을 사용하는 Corporate Flat Vector Illustration이다. 결과물은 투명 배경 raster이며 SVG 원본으로 표시하지 않는다. 모바일 hero 59,646 bytes, 기본 hero 100,670 bytes, 단계 이미지는 각각 24,032–32,646 bytes다. 배포 시 원본 PNG를 다운로드하지 않는다.
 
