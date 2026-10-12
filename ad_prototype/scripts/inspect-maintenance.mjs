@@ -9,6 +9,7 @@ await mkdir(output,{recursive:true})
 const browser = await chromium.launch({channel:'msedge',headless:true})
 const findings=[]
 async function inspect(page,name,width) {
+  await page.evaluate(()=>scrollTo(0,0))
   await page.evaluate(async()=>{await document.fonts.ready;await Promise.all([...document.images].filter(img=>img.getBoundingClientRect().height>0 && img.getBoundingClientRect().top<innerHeight).map(img=>img.decode().catch(()=>{})))})
   await page.mouse.move(0,0)
   await page.screenshot({path:join(output,`${name}-${width}.png`),fullPage:true})
@@ -34,7 +35,7 @@ async function inspect(page,name,width) {
   findings.push({name,width,...data})
 }
 try {
-  for (const width of [320,390,1440]) {
+  for (const width of [320,375,390,430,768,1024,1440]) {
     const page=await browser.newPage({viewport:{width,height:900},reducedMotion:'reduce'})
     await page.goto('http://127.0.0.1:5173/')
     await inspect(page,'home-full',width)
@@ -55,8 +56,34 @@ try {
     await page.locator('.photo-format-settings > summary').click()
     await inspect(page,'photo-settings',width)
     await page.locator('.photo-format-settings > summary').click()
+    await page.locator('.destination-settings > summary').click()
+    await page.locator('.destination-settings > summary').getByText('접기',{exact:true}).waitFor()
+    await inspect(page,'platform-selection',width)
+    await page.getByRole('radio',{name:'인스타그램',exact:true}).check()
+    await page.getByRole('radio',{name:'파일만 저장하기',exact:true}).check()
+    await page.locator('.destination-settings > summary').click()
+    await page.locator('.destination-settings > summary').getByText('펼치기',{exact:true}).waitFor()
+    await page.getByLabel('제품 사진 올리기',{exact:true}).setInputFiles({name:'bad.txt',mimeType:'text/plain',buffer:Buffer.from('invalid')})
+    await page.getByText('사진 파일을 선택해 주세요.',{exact:true}).waitFor()
+    await inspect(page,'upload-error',width)
+    assert.equal(await page.getByRole('button',{name:'사진 확인하고 다음',exact:true}).isDisabled(),true)
+    assert.equal(await page.locator('#upload-feedback').getAttribute('aria-atomic'),'true')
+    await page.evaluate(()=>{
+      const read=FileReader.prototype.readAsDataURL
+      window.__holdFileRead=true
+      FileReader.prototype.readAsDataURL=function(file){if(window.__holdFileRead) window.__releaseFileRead=()=>{window.__holdFileRead=false;read.call(this,file)};else read.call(this,file)}
+    })
     await page.getByLabel('제품 사진 올리기',{exact:true}).setInputFiles(fileURLToPath(new URL('../public/assets/samples/product-example.png',import.meta.url)))
+    await page.getByText('사진을 확인하고 있어요.',{exact:true}).waitFor()
+    assert.equal(await page.locator('.photo-upload').getAttribute('aria-busy'),'true')
+    assert.equal(await page.locator('.activity-dot').evaluate(el=>getComputedStyle(el).animationName),'none')
+    await inspect(page,'upload-loading',width)
+    await page.evaluate(()=>window.__releaseFileRead())
     await page.getByRole('button',{name:'사진 확인하고 다음',exact:true}).click()
+    for(const label of ['제품 설명','강조할 특징']) assert.equal(await page.getByLabel(label,{exact:true}).getAttribute('aria-required'),'true')
+    await page.getByLabel('제품 설명',{exact:true}).fill('')
+    assert.equal(await page.getByRole('button',{name:'이 내용으로 결과 보기',exact:true}).isDisabled(),true)
+    await inspect(page,'information-error',width)
     await page.getByLabel('가게·제품 이름',{exact:true}).fill('행복한 카페')
     await page.getByLabel('제품 설명',{exact:true}).fill('매일 아침 직접 구운 빵과 신선한 커피를 판매합니다.')
     await page.getByLabel('강조할 특징',{exact:true}).fill('동네에서 편안하게 쉬어갈 수 있는 따뜻한 공간입니다.')
@@ -68,6 +95,13 @@ try {
       await page.getByRole('tab',{name:tab,exact:true}).click()
       await page.evaluate(()=>scrollTo(0,0))
       await inspect(page,name,width)
+      if(tab==='영상' && width===390) {
+        await page.getByRole('button',{name:'영상 저장하기',exact:true}).click()
+        await page.getByRole('button',{name:'영상 준비 취소',exact:true}).waitFor()
+        await page.screenshot({path:join(output,'video-loading-390.png')})
+        await page.getByRole('button',{name:'영상 준비 취소',exact:true}).click()
+        await page.getByRole('button',{name:'영상 저장하기',exact:true}).waitFor()
+      }
     }
     await page.getByRole('button',{name:width<1024?'전체 메뉴 열기':'메뉴 열기',exact:true}).click()
     await page.getByRole('dialog').getByRole('button',{name:'로그인 화면 보기',exact:true}).click()

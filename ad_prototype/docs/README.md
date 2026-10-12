@@ -21,6 +21,8 @@
 | [Mobile implementation](../feedback/2026-10-12-uiux-implementation.md) | Bottom navigation and result-tab implementation and verification |
 | [Design maintenance](../feedback/2026-10-12-design-maintenance.md) | Visual refinements and pinned read-aloud/result controls |
 | [Mobile reference implementation](../feedback/2026-10-12-mobile-reference.md) | Create/Menu separation, focused results, photo changes, and filtered records |
+| [통합 체크리스트](../feedback/2026-10-12-integrated-checklist.md) | 교수·멘토링 요구사항의 실제 판정과 사용자 요금·무료 사용량 가안 |
+| [크레딧 정책 조사](../feedback/2026-10-12-credit-policy-research.md) | 타사 공식 정책, 사용자 선택, 원가 확인 전 아이디어 및 향후 점검 순서 |
 
 New feedback belongs in `feedback/`. Keep the source message analysis and reference images separate from implementation conclusions.
 

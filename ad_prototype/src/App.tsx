@@ -1401,6 +1401,7 @@ function CreateFlow({
           <div className="details-fields mt-7 space-y-5">
             <label className="block text-[18px] font-bold">
               가게·제품 이름{" "}
+              <span className="field-requirement">선택</span>
               <span className="field-hint">선택 · 예: 행복한 카페</span>
               <input
                 aria-label="가게·제품 이름"
@@ -1415,11 +1416,13 @@ function CreateFlow({
             </label>
             <label className="block text-[18px] font-bold">
               어떤 제품인가요?{" "}
+              <span className="field-requirement">필수</span>
               <span className="field-hint" id="description-help">
                 예: 매장에서 굽는 단팥빵
               </span>
               <textarea
                 aria-label="제품 설명"
+                aria-required="true"
                 aria-invalid={!details.description.trim()}
                 aria-describedby="description-help"
                 value={details.description}
@@ -1432,11 +1435,13 @@ function CreateFlow({
             </label>
             <label className="block text-[18px] font-bold">
               알리고 싶은 점{" "}
+              <span className="field-requirement">필수</span>
               <span className="field-hint" id="features-help">
                 꼭 알리고 싶은 점을 적어요. 예: 오늘 만든 빵만 판매해요
               </span>
               <textarea
                 aria-label="강조할 특징"
+                aria-required="true"
                 aria-invalid={!details.features.trim()}
                 aria-describedby="features-help"
                 value={details.features}
@@ -1749,7 +1754,7 @@ function CreateFlow({
                     alt="영상에 사용할 제품 사진"
                     className={playing ? "is-playing" : ""}
                   />
-                  <strong>{details.name?.trim() || details.features}</strong>
+                  <strong><span>{details.name?.trim() || details.features}</span></strong>
                 </div>
                 <div className="result-card-actions result-video-actions">
                   <button

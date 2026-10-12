@@ -1,4 +1,20 @@
 /* Local visual refinements: keep the established screen order and destinations. */
+.studio-shell .upload-feedback:is(.is-error, .is-pending) {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid currentColor;
+  font-size: 18px;
+  line-height: 1.6;
+}
+.studio-shell .upload-feedback.is-error {
+  background: var(--color-error-soft);
+  color: var(--color-error);
+}
+.studio-shell .upload-feedback.is-pending {
+  background: var(--color-brand-soft);
+  color: var(--color-brand);
+}
 .prototype-app :is(input, textarea)::placeholder {
   color: var(--color-muted);
   opacity: 1;
@@ -139,8 +155,9 @@
   margin-top: 8px;
 }
 
-.studio-shell main :is(input, textarea, [data-screen-heading]) {
+.studio-shell main :is(input, textarea, select, button, summary, a[href], [data-screen-heading]) {
   scroll-margin-top: calc(var(--studio-reading-height, 65px) + 16px);
+  scroll-margin-bottom: calc(112px + env(safe-area-inset-bottom));
 }
 
 .studio-shell .result-tab-panels :is(button, summary, [tabindex]) {

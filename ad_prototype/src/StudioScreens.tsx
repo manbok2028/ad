@@ -24,6 +24,32 @@ type Speech = {
 
 export { default as StudioIcon } from "./Icon"
 
+function keepFocusedControlVisible() {
+  const field = document.activeElement
+  if (!(field instanceof HTMLElement) || !field.matches("input, textarea, select, button, summary, a[href]")) return
+  const shell = field.closest<HTMLElement>(".studio-shell")
+  if (!shell || !field.closest("main[data-app-scroll-container]") || field.closest("[inert]")) return
+  const viewport = window.visualViewport
+  const reading = shell.querySelector(".studio-reading-bar")?.getBoundingClientRect()
+  const nav = shell.querySelector(".studio-bottom-nav")?.getBoundingClientRect()
+  const tabs = shell.querySelector(".result-tabs-bar")?.getBoundingClientRect()
+  const stickyTabsBottom = field.closest(".result-tab-panels") && tabs && tabs.top <= (reading?.bottom ?? 0) + 1 ? tabs.bottom : 0
+  const top = Math.max(viewport?.offsetTop ?? 0, reading?.bottom ?? 0, stickyTabsBottom) + 12
+  const bottom = Math.min(
+    (viewport?.offsetTop ?? 0) + (viewport?.height ?? window.innerHeight),
+    nav && nav.height > 0 ? nav.top : window.innerHeight,
+  ) - 12
+  const box = field.getBoundingClientRect()
+  if (bottom <= top) return
+  // Keep a large, manually resized textarea's top visible without repeatedly jumping.
+  const delta = box.top < top
+    ? box.top - top
+    : box.height <= bottom - top && box.bottom > bottom
+      ? box.bottom - bottom
+      : 0
+  if (Math.abs(delta) > 1) window.scrollBy({ top: delta, behavior: "instant" })
+}
+
 function ReadButton({
   speaking,
   speechPreparing,
@@ -304,6 +330,22 @@ export function StudioShell({
   useEffect(() => {
     if (mobileOpen) menuRef.current?.focus()
   }, [mobileOpen, menuPurpose])
+  useEffect(() => {
+    let frame = 0
+    const schedule = () => {
+      window.cancelAnimationFrame(frame)
+      frame = window.requestAnimationFrame(keepFocusedControlVisible)
+    }
+    document.addEventListener("focusin", schedule)
+    window.addEventListener("resize", schedule)
+    window.visualViewport?.addEventListener("resize", schedule)
+    return () => {
+      window.cancelAnimationFrame(frame)
+      document.removeEventListener("focusin", schedule)
+      window.removeEventListener("resize", schedule)
+      window.visualViewport?.removeEventListener("resize", schedule)
+    }
+  }, [])
   return (
     <div
       className={`prototype-app studio-shell ${easyMode ? "easy-mode" : ""} ${
