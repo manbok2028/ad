@@ -1,3 +1,6 @@
+> **Historical reference — not an active task.** Current work follows [AGENTS.md](../../AGENTS.md) and [DESIGN_MAINTENANCE.md](../../DESIGN_MAINTENANCE.md). Earlier redesign directives are superseded by the current maintenance mode.
+> Original location: `UI_DESIGN_REVIEW.md`. File links have been rebased; historical prose and code paths retain their original context.
+
 # 모바일·시니어 UI 개선 기록
 
 2026-10-09 기준. GitHub main `b3dbe2f`를 로컬에 받아 `feature/mobile-senior-ui`에서 작업한다. 이 기록은 UI 프로토타입 개선이며 실제 AI 모듈 연결이나 서비스 배포 완료를 뜻하지 않는다.
@@ -93,7 +96,7 @@ pnpm verify:ui
 
 추가 브라우저 검수에서 인스타그램·엑스·쓰레드 선택마다 홍보 글, 이미지 배경 그라데이션, 영상 배경 오버레이가 서로 다른 예시로 구성되는 것을 확인했다. 세 채널의 스타일이 모두 동일한 결과로 고정되지 않는다.
 
-로컬에서 CSS가 깨지는 문제는 [LOCAL_PREVIEW.md](./LOCAL_PREVIEW.md)의 실행 방식으로 확인한다. `start-preview.cmd`가 올바른 Vite 주소를 열며, 기존 서버 연결과 새 서버 시작(별도 5181 포트)을 모두 시험했다.
+로컬에서 CSS가 깨지는 문제는 [LOCAL_PREVIEW.md](../LOCAL_PREVIEW.md)의 실행 방식으로 확인한다. `start-preview.cmd`가 올바른 Vite 주소를 열며, 기존 서버 연결과 새 서버 시작(별도 5181 포트)을 모두 시험했다.
 
 ## 사진 교체와 읽어주기 오류 회복
 

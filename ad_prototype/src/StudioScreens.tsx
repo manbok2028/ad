@@ -161,6 +161,10 @@ export function StudioShell({
   creationType,
   mobileOpen,
   setMobileOpen,
+  menuPurpose,
+  setMenuPurpose,
+  resultView,
+  creationView,
   navigate,
   onLogout,
   easyMode,
@@ -176,6 +180,10 @@ export function StudioShell({
   creationType: CreationType
   mobileOpen: boolean
   setMobileOpen: (value: boolean) => void
+  menuPurpose: "create" | "menu"
+  setMenuPurpose: (value: "create" | "menu") => void
+  resultView: boolean
+  creationView: boolean
   navigate: Navigation
   onLogout: () => void
   setEasyMode: (value: boolean) => void
@@ -183,18 +191,68 @@ export function StudioShell({
 }) {
   const menuRef = useRef<HTMLElement>(null)
   const headerRef = useRef<HTMLElement>(null)
+  const readingRef = useRef<HTMLDivElement>(null)
+  const openMenu = (purpose: "create" | "menu") => {
+    setMenuPurpose(purpose)
+    setMobileOpen(true)
+  }
+  const bottomNavigation = (insideMenu = false) => (
+    <nav
+      inert={mobileOpen && !insideMenu}
+      className={`mobile-navigation studio-bottom-nav ${
+        insideMenu ? "studio-menu-bottom-nav" : ""
+      }`}
+      aria-label="모바일 빠른 메뉴"
+    >
+      {pages.map((item) => {
+        const active = mobileOpen
+          ? item.page === "create" && menuPurpose === "create"
+          : item.page === page
+        return (
+          <button
+            key={item.page}
+            type="button"
+            onClick={() =>
+              item.page === "create" ? openMenu("create") : navigate(item.page)
+            }
+            className={active ? "is-active" : ""}
+            aria-current={active ? "page" : undefined}
+          >
+            <StudioIcon name={item.icon} />
+            <span>{item.label}</span>
+          </button>
+        )
+      })}
+      <button
+        type="button"
+        onClick={() => openMenu("menu")}
+        className={mobileOpen && menuPurpose === "menu" ? "is-active" : ""}
+        aria-expanded={mobileOpen && menuPurpose === "menu"}
+        aria-label="전체 메뉴 열기"
+      >
+        <StudioIcon name="menu" />
+        <span>메뉴</span>
+      </button>
+    </nav>
+  )
   useEffect(() => {
     const header = headerRef.current
     const shell = header?.closest<HTMLElement>(".studio-shell")
     if (!header || !shell) return
-    const measure = () =>
+    const measure = () => {
       shell.style.setProperty(
         "--studio-header-height",
         `${header.getBoundingClientRect().height}px`,
       )
+      shell.style.setProperty(
+        "--studio-reading-height",
+        `${readingRef.current?.getBoundingClientRect().height ?? 64}px`,
+      )
+    }
     measure()
     const observer = new ResizeObserver(measure)
     observer.observe(header)
+    if (readingRef.current) observer.observe(readingRef.current)
     return () => observer.disconnect()
   }, [])
   useEffect(() => {
@@ -211,9 +269,12 @@ export function StudioShell({
       }
       if (event.key !== "Tab") return
       const buttons = Array.from(
-        menuRef.current?.querySelectorAll<HTMLButtonElement>(
-          "button:not(:disabled)",
+        menuRef.current?.querySelectorAll<HTMLElement>(
+          'button:not(:disabled), input:not(:disabled), textarea:not(:disabled), select:not(:disabled), summary, a[href], [tabindex]:not([tabindex="-1"])',
         ) ?? [],
+      ).filter(
+        (element) =>
+          element.getClientRects().length > 0 && !element.closest("[inert]"),
       )
       const first = buttons[0],
         last = buttons.at(-1)
@@ -240,11 +301,16 @@ export function StudioShell({
       if (previous?.isConnected) previous.focus()
     }
   }, [mobileOpen, setMobileOpen])
+  useEffect(() => {
+    if (mobileOpen) menuRef.current?.focus()
+  }, [mobileOpen, menuPurpose])
   return (
     <div
-      className={`prototype-app studio-shell ${easyMode ? "easy-mode" : ""}`}
+      className={`prototype-app studio-shell ${easyMode ? "easy-mode" : ""} ${
+        resultView ? "has-result-view" : ""
+      } ${creationView ? "has-creation-view" : ""}`}
     >
-      <div className="studio-reading-bar" inert={mobileOpen}>
+      <div ref={readingRef} className="studio-reading-bar" inert={mobileOpen}>
         <ReadButton {...{ speaking, speechPreparing, onSpeak }} />
       </div>
       <header ref={headerRef} className="studio-header" inert={mobileOpen}>
@@ -260,7 +326,11 @@ export function StudioShell({
             {pages.map((item) => (
               <button
                 key={item.page}
-                onClick={() => navigate(item.page, item.type)}
+                onClick={() =>
+                  item.page === "create"
+                    ? openMenu("create")
+                    : navigate(item.page)
+                }
                 className={item.page === page ? "is-active" : ""}
                 aria-current={item.page === page ? "page" : undefined}
               >
@@ -271,7 +341,7 @@ export function StudioShell({
           </nav>
           <button
             className="studio-menu-button"
-            onClick={() => setMobileOpen(true)}
+            onClick={() => openMenu("menu")}
             aria-label="메뉴 열기"
             aria-expanded={mobileOpen}
           >
@@ -307,7 +377,12 @@ export function StudioShell({
         <FeedbackSettings />
       </details>
       {mobileOpen && (
-        <div className="studio-menu-layer">
+        <div
+          className={
+            "studio-menu-layer " +
+            (menuPurpose === "create" ? "studio-creation-layer" : "")
+          }
+        >
           <button
             className="studio-menu-backdrop"
             onClick={() => setMobileOpen(false)}
@@ -316,10 +391,15 @@ export function StudioShell({
           <aside
             ref={menuRef}
             tabIndex={-1}
-            className="studio-menu-panel"
+            className={
+              "studio-menu-panel " +
+              (menuPurpose === "create" ? "creation-picker-panel" : "")
+            }
             role="dialog"
             aria-modal="true"
-            aria-label="전체 메뉴"
+            aria-label={
+              menuPurpose === "create" ? "홍보물 만들기" : "설정 및 이용 안내"
+            }
           >
             <div className="studio-menu-heading">
               <BrandLogo />
@@ -331,50 +411,124 @@ export function StudioShell({
                 닫기 ×
               </button>
             </div>
-            <p>어떤 홍보물을 만들까요?</p>
-            {[
-              {
-                label: "한 번에 완성",
-                type: "all" as CreationType,
-                icon: "plus" as const,
-              },
-              {
-                label: "이미지 만들기",
-                type: "poster" as CreationType,
-                icon: "picture" as const,
-              },
-              {
-                label: "동영상 만들기",
-                type: "video" as CreationType,
-                icon: "video" as const,
-              },
-              {
-                label: "홍보 글 만들기",
-                type: "copy" as CreationType,
-                icon: "copy" as const,
-              },
-            ].map((item) => (
-              <button
-                key={item.type}
-                className={`studio-menu-row ${
-                  creationType === item.type && page === "create"
-                    ? "is-active"
-                    : ""
-                }`}
-                onClick={() => navigate("create", item.type)}
-              >
-                <StudioIcon name={item.icon} />
-                {item.label}
-                <StudioIcon name="arrow" />
-              </button>
-            ))}
-            <div className="studio-menu-footer">
-              <button onClick={() => navigate("records")}>
-                내 홍보물 보기
-              </button>
-              <button onClick={() => navigate("plan")}>구독·건당 플랜</button>
-              <button onClick={onLogout}>로그인 화면 보기</button>
-            </div>
+            <h2 className="studio-panel-title">
+              {menuPurpose === "create"
+                ? "어떤 홍보물을 만들까요?"
+                : "설정 및 이용 안내"}
+            </h2>
+            {menuPurpose === "create" ? (
+              <>
+                <p className="studio-panel-intro">
+                  만들고 싶은 홍보물을 선택하세요.
+                </p>
+                {[
+                  {
+                    label: "한 번에 완성",
+                    type: "all" as CreationType,
+                    icon: "plus" as const,
+                    description:
+                      "사진 한 장으로 이미지·영상·문구를 함께 만들어요.",
+                  },
+                  {
+                    label: "이미지 만들기",
+                    type: "poster" as CreationType,
+                    icon: "picture" as const,
+                    description: "사진과 글을 담은 포스터를 만들어요.",
+                  },
+                  {
+                    label: "동영상 만들기",
+                    type: "video" as CreationType,
+                    icon: "video" as const,
+                    description: "사진을 활용한 짧은 영상 예시를 만들어요.",
+                  },
+                  {
+                    label: "홍보 글 만들기",
+                    type: "copy" as CreationType,
+                    icon: "copy" as const,
+                    description: "복사해서 사용할 홍보 문구를 만들어요.",
+                  },
+                ].map((item) => (
+                  <button
+                    key={item.type}
+                    aria-label={item.label}
+                    aria-describedby={`creation-option-${item.type}`}
+                    className={`studio-menu-row ${
+                      creationType === item.type && page === "create"
+                        ? "is-active"
+                        : ""
+                    }`}
+                    onClick={() => navigate("create", item.type)}
+                  >
+                    <StudioIcon name={item.icon} />
+                    <span className="studio-menu-copy">
+                      <strong>{item.label}</strong>
+                      <small id={`creation-option-${item.type}`}>
+                        {item.description}
+                      </small>
+                    </span>
+                    <StudioIcon name="arrow" />
+                  </button>
+                ))}
+                <button className="studio-window-switch" onClick={() => openMenu("menu")}>
+                  <StudioIcon name="settings" size={20} />설정·이용 안내
+                </button>
+              </>
+            ) : (
+              <>
+                <section className="menu-creation-shortcuts" aria-label="홍보물 제작 바로가기">
+                  <h3>홍보물 만들기</h3>
+                  <p>만들 종류를 고르면 사진 입력으로 바로 이동해요.</p>
+                  <div>
+                    {[
+                      { label: "한 번에 만들기", type: "all" as CreationType, icon: "plus" as const },
+                      { label: "이미지 만들기", type: "poster" as CreationType, icon: "picture" as const },
+                      { label: "문구 만들기", type: "copy" as CreationType, icon: "copy" as const },
+                      { label: "영상 만들기", type: "video" as CreationType, icon: "video" as const },
+                    ].map(item => (
+                      <button key={item.type} onClick={() => navigate("create", item.type)}>
+                        <StudioIcon name={item.icon} size={20} /><span>{item.label}</span>
+                      </button>
+                    ))}
+                  </div>
+                </section>
+                <details className="service-menu-section" open>
+                  <summary>글씨 크기·간편모드</summary>
+                  <p>간편모드에서는 글씨와 버튼을 더 크게 보여줘요.</p>
+                  <button
+                    className="studio-mode-switch"
+                    role="switch"
+                    aria-label="간편모드"
+                    aria-checked={easyMode}
+                    onClick={() => setEasyMode(!easyMode)}
+                  >
+                    <span>간편모드</span>
+                    <strong>{easyMode ? "켜짐" : "꺼짐"}</strong>
+                  </button>
+                </details>
+                <details className="service-menu-section">
+                  <summary>읽어주기·완료 알림</summary>
+                  <p>
+                    메뉴를 닫은 뒤 화면 상단의 읽어주기로 내용을 들을 수 있어요.
+                  </p>
+                  <FeedbackSettings />
+                </details>
+                <details className="service-menu-section">
+                  <summary>사용 방법</summary>
+                  <ol>
+                    <li>만들기에서 홍보물 종류를 골라요.</li>
+                    <li>사진을 넣고 제품 정보를 적어요.</li>
+                    <li>이미지·영상·문구를 확인하고 저장하거나 복사해요.</li>
+                  </ol>
+                </details>
+                <div className="studio-menu-footer">
+                  <button onClick={() => navigate("plan")}>
+                    구독·건당 플랜
+                  </button>
+                  <button onClick={onLogout}>로그인 화면 보기</button>
+                </div>
+              </>
+            )}
+            {bottomNavigation(true)}
           </aside>
         </div>
       )}
@@ -390,23 +544,7 @@ export function StudioShell({
         )}
         {children}
       </main>
-      <nav
-        inert={mobileOpen}
-        className="mobile-navigation studio-bottom-nav"
-        aria-label="모바일 빠른 메뉴"
-      >
-        {pages.map((item) => (
-          <button
-            key={item.page}
-            onClick={() => navigate(item.page, item.type)}
-            className={item.page === page ? "is-active" : ""}
-            aria-current={item.page === page ? "page" : undefined}
-          >
-            <StudioIcon name={item.icon} />
-            <span>{item.label}</span>
-          </button>
-        ))}
-      </nav>
+      {bottomNavigation()}
       <footer className="studio-footer">
         <img
           src="/assets/branding/selected/wordmark.svg"
@@ -422,9 +560,11 @@ export function StudioShell({
 
 export function StudioHome({
   navigate,
+  onChooseCreation,
 }: {
   navigate: Navigation
   easyMode: boolean
+  onChooseCreation: () => void
 }) {
   return (
     <div className="studio-home">
@@ -446,10 +586,7 @@ export function StudioHome({
             차근차근 함께 만들어요.
           </p>
           <div className="studio-guide-action">
-            <button
-              className="studio-primary"
-              onClick={() => navigate("create", "all")}
-            >
+            <button className="studio-primary" onClick={onChooseCreation}>
               홍보물 만들기 <StudioIcon name="arrow" />
             </button>
             <p>가입 없이 시작 · 제품 사진 한 장이면 돼요</p>

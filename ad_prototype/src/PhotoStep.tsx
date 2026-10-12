@@ -97,8 +97,32 @@ export default function PhotoStep({
               {message}
             </p>
           )}
+          <figure className="photo-example">
+            <img
+              src="/assets/samples/product-example.png"
+              alt="제품 전체가 또렷하게 보이는 사진 예시"
+              width="72"
+              height="88"
+            />
+            <figcaption>
+              <strong>이런 사진이 좋아요</strong>
+              <span>제품 전체가 또렷하게 보이는 사진을 골라 주세요.</span>
+            </figcaption>
+          </figure>
         </section>
-        <section className="format-section" aria-labelledby="format-title">
+        <details className="format-section photo-format-settings">
+          <summary>
+            <span>만들 결과 고르기 · 선택</span>
+            <strong>
+              {type === "all"
+                ? formats.find((item) => item.id === format)?.title
+                : type === "poster"
+                  ? "포스터"
+                  : type === "video"
+                    ? "영상"
+                    : "홍보 글"}
+            </strong>
+          </summary>
           <div className="section-heading">
             <span className="section-kicker">사진으로 만들 홍보물</span>
             <h3 id="format-title">
@@ -165,7 +189,7 @@ export default function PhotoStep({
               사진과 선택한 내용은 그대로 이어져요.
             </p>
           </div>
-        </section>
+        </details>
       </div>
       <details className="destination-settings">
         <summary>

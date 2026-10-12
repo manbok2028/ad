@@ -1,3 +1,6 @@
+> **Historical reference — not an active task.** Current work follows [AGENTS.md](../../AGENTS.md) and [DESIGN_MAINTENANCE.md](../../DESIGN_MAINTENANCE.md). Earlier redesign directives are superseded by the current maintenance mode.
+> Original location: `PHASE4B_ASSET_PLAN.md`. File links have been rebased; historical prose and code paths retain their original context.
+
 # 홍보잇다 Phase 4-B 에셋 계획
 
 지침 원본은 `HASE4B_MASTER.md`다. 요청한 `PHASE4B_MASTER.md`와 파일명만 다르며 내용을 모두 확인했다. 승인한 C안과 사진→설명→결과의 기존 동작을 유지한다.

@@ -1,3 +1,6 @@
+> **Historical reference — not an active task.** Current work follows [AGENTS.md](../../AGENTS.md) and [DESIGN_MAINTENANCE.md](../../DESIGN_MAINTENANCE.md). Earlier redesign directives are superseded by the current maintenance mode.
+> Original location: `PHASE3_IMPLEMENTATION.md`. File links have been rebased; historical prose and code paths retain their original context.
+
 # 홍보잇다 Phase 3 구현·검증 보고서
 
 완료일: 2026-10-09. 최종 첨부 요청의 **COMPLETE PRODUCT EXPERIENCE RECONSTRUCTION** 범위를 실제 React 프로젝트에 구현했다. `AGENTS.md`, `DESIGN_MASTER.md`, Phase 1 분석과 Phase 2 구현·디자인 시스템·채널 전략·에셋 계획을 검토했다. React 19 / Vite 8 / TypeScript / Tailwind CSS v4 구조와 기존 기능을 유지했다.
@@ -182,4 +185,4 @@ Phase 3 시작 전 ZIP과 현재 파일의 SHA-256을 비교했다. 기존 Git �
 
 기술 판단에는 실제 접근한 [Web Audio 권장 사용법](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Best_practices), [Vibration API](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/vibrate), [동작 줄이기 미디어 쿼리](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion)를 참고했다. 외부 디자인 사이트를 이번 단계에 새로 시각 검토했다고 주장하지 않는다. 디자인 원칙과 채널 판단은 기존 Phase 1·2의 조사 결과를 이어 사용했다.
 
-검증 상세: [Phase 3 JSON](ui-review/phase3/verification.json). 화면 예시: [모바일 홈](ui-review/phase3/home-390.png), [모바일 사진 입력](ui-review/phase3/photo-390.png), [PC 결과](ui-review/phase3/results-1440.png).
+검증 상세: [Phase 3 JSON](../../ui-review/phase3/verification.json). 화면 예시: [모바일 홈](../../ui-review/phase3/home-390.png), [모바일 사진 입력](../../ui-review/phase3/photo-390.png), [PC 결과](../../ui-review/phase3/results-1440.png).

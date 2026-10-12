@@ -1,54 +1,36 @@
-# figma-make-app
+# 홍보잇다 — Working Instructions
 
-React + Vite + Tailwind CSS project running inside Figma Make.
+## Current operating mode
 
-## Development Server
+Preserve the currently validated structure, while allowing changes requested by the user or through additional professor feedback.
 
-A Vite development server is **already running** on `$PORT` (default 8443). You don't need to start it manually.
+**현재 검증된 구조를 유지하되, 추가 교수님 피드백과 사용자 요청에 따라 변경한다.**
 
-- Preview URL: The user can access the running app through the preview panel
-- Hot reload: Changes to source files are reflected immediately
+For UI work, read [DESIGN_MAINTENANCE.md](DESIGN_MAINTENANCE.md). Use [design principles](docs/design/DESIGN_PRINCIPLES.md) for shared visual rules and relevant files under `feedback/` for task-specific feedback. User instructions determine the requested scope. Historical documents under `docs/archive/` are reference material; their full-redesign directives are not active instructions.
 
-## Project Structure
+The permanent major-change approval policy in `DESIGN_MAINTENANCE.md` takes precedence over older unrestricted restructuring instructions. Safe local refinements may proceed autonomously; new major structural proposals require explicit user approval. A concrete change already requested by the user is authorized within that scope.
 
-This is the canonical project structure. Start with task-relevant files below. Only follow imports or inspect other files when required, when a documented path is missing, or when the repository contradicts this guide.
+## Development environment
 
-- `src/main.tsx` - React entrypoint; imports `src/index.css` and mounts `src/App.tsx` into the `#root` element
-- `src/App.tsx` - Primary application component and the usual starting point for UI work
-- `src/index.css` - Global CSS entrypoint and Tailwind CSS v4 import
-- `index.html` - Vite HTML shell containing the `#root` element and loading `src/main.tsx`
-- `package.json` - Project dependencies and the Vite build, development, preview, and formatting scripts
-- `vite.config.ts` - Vite configuration with React, Tailwind CSS v4, and Figma Make plugins plus the `@` alias for `src`
-- `.mise.toml` - Toolchain versions for Node.js and pnpm
+- Preserve the current React 19, Vite 8, TypeScript, and Tailwind CSS v4 setup in `package.json` and `vite.config.ts`.
+- Inspect the actual local environment before starting a server. Reuse a working server; otherwise follow [local preview instructions](docs/LOCAL_PREVIEW.md).
+- Do not assume that Figma Make, a particular port, or an external preview is running. Do not add absent plugins or configuration files based on archived documentation.
+- Preserve existing user changes, secrets, API contracts, downloads, clipboard behavior, and recoverable failure states.
 
-## Dependencies
+## Relevant source files
 
-- Runtime: React 19 and React DOM 19
-- Styling: Tailwind CSS v4 with the `@tailwindcss/vite` plugin
-- Build tooling: Vite 8, TypeScript 5.7, and `@vitejs/plugin-react`
-- Formatting: oxfmt
+- `src/main.tsx`: entrypoint and stylesheet imports.
+- `src/App.tsx`: creation state, result tabs, records, and local sample exports.
+- `src/StudioScreens.tsx`: common shell, home, creation menu, and navigation.
+- `src/index.css`: global styling and Tailwind entrypoint.
+- `src/feedback-layout.css`: persistent mobile navigation and tabbed result presentation.
+- `src/design-tokens.css`: shared colors, spacing, typography, and control tokens.
+- `scripts/verify-professor-feedback.mjs`: focused navigation, tab, and export verification.
 
-## Styling
+Follow imports and inspect additional files only as needed. Keep CSS imports before other rules and use the existing design tokens. Internal refactoring is permitted when it preserves the user-facing flow and fixes a documented issue.
 
-This project uses **Tailwind CSS v4** through the `@tailwindcss/vite` plugin configured in `vite.config.ts`. `src/index.css` imports Tailwind with `@import 'tailwindcss';`. Use Tailwind utility classes directly in JSX and put global CSS or Tailwind v4 theme customization in `src/index.css`. This scaffold does not need a Tailwind config file or PostCSS config.
+## Verification and reporting
 
-`src/main.tsx` imports `src/index.css`, so global font wiring belongs in `src/index.css`. Keep CSS `@import` statements first, then add any `@font-face` rules and font-family defaults there.
+Run the production build and relevant checks for changes that affect behavior. Inspect real browser renders for visual changes; do not claim visual verification from code alone. Explain changes, verification, limitations, and remaining work in Korean.
 
-## Code quality
-
-- Use double quotes for strings containing apostrophes (`"We're here to help"`), or escape them in single-quoted strings. An unescaped apostrophe in a single-quoted string breaks the build.
-- Ensure JSX tags are closed and braces are balanced.
-- Export components as default exports.
-## Product Redesign Instructions
-
-For all UI/UX design, redesign, visual improvement, and frontend implementation tasks, read and follow `DESIGN_MASTER.md` in the project root.
-
-Treat `DESIGN_MASTER.md` as the authoritative source for product design goals, mobile-first accessibility, senior-friendly user experience, visual identity, illustration guidelines, and iterative design reviews.
-
-Preserve the existing Figma Make environment, React 19, Vite 8, Tailwind CSS v4, and all essential application functionality.
-
-Do not start another development server when the existing Vite server is already running.
-
-The existing instructions in this file govern technical environment compatibility. `DESIGN_MASTER.md` governs product experience and visual redesign decisions.
-
-Before completing any redesign task, verify responsiveness, functional parity, and the quality of generated-result layouts.
+Use [the documentation index](docs/README.md) to find current references. Preserve original professor feedback and source images. Update links and script paths when moving documents; `scripts/document-paths.mjs` maps historical checkpoint paths.

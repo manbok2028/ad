@@ -1,3 +1,6 @@
+> **Historical reference — not an active task.** Current work follows [AGENTS.md](../../AGENTS.md) and [DESIGN_MAINTENANCE.md](../../DESIGN_MAINTENANCE.md). Earlier redesign directives are superseded by the current maintenance mode.
+> Original location: `UI_NEXT_STEPS.md`. File links have been rebased; historical prose and code paths retain their original context.
+
 # 다음 작업 인계
 
 현재 목표는 모바일·시니어 중심의 전면 UI 재설계와 반복 개선이다. 단순한 색 변경으로 목표를 축소하지 않는다. 기존 기능은 보존하고, 2000~2020 보존 홈페이지를 디자인 주근거로 삼는다. 검증된 역사 레퍼런스와 수정 이유는 `UI_DESIGN_REVIEW.md`에 있다.

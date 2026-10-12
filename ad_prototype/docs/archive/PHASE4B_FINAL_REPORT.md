@@ -1,3 +1,6 @@
+> **Historical reference — not an active task.** Current work follows [AGENTS.md](../../AGENTS.md) and [DESIGN_MAINTENANCE.md](../../DESIGN_MAINTENANCE.md). Earlier redesign directives are superseded by the current maintenance mode.
+> Original location: `PHASE4B_FINAL_REPORT.md`. File links have been rebased; historical prose and code paths retain their original context.
+
 # 홍보잇다 Phase 4-B — 브랜드 에셋 확장·화면 정교화 결과
 
 작성: 2026-10-10. 사용자 승인 C안 ‘오가는 흐름’을 유지하고 **로고 구성 8개와 신규 서비스 삽화 12종, 총 20개 창작 단위**를 완성했다. 주요 삽화 12종을 실제 React 화면에 모두 연결하고 최종 화면·기능 검증을 통과했다.
@@ -14,7 +17,7 @@
 
 주황 `#E88942`는 심볼·이미지에, 진한 주황 `#AD4A19`는 주요 행동에, 남색 `#26364A`는 읽는 글자에 사용한다. 아이보리 `#FFF8EF`와 피치가 중심 배경이다. 보조 글자 `#625E59`는 피치 카드에서도 읽을 수 있도록 대비를 확보한 값이다. 기존 민트·하늘색은 보조색으로 사용한다.
 
-브랜드 사용 기준: [BRAND_GUIDE.md](public/assets/branding/selected/BRAND_GUIDE.md). 글꼴의 저작권·SIL OFL은 같은 폴더 `FONT-LICENSE.txt`에 보관한다.
+브랜드 사용 기준: [BRAND_GUIDE.md](../../public/assets/branding/selected/BRAND_GUIDE.md). 글꼴의 저작권·SIL OFL은 같은 폴더 `FONT-LICENSE.txt`에 보관한다.
 
 ## 2. 에셋 20개와 저장 위치
 
@@ -43,7 +46,7 @@
 
 표의 경로는 `public/assets/`를 기준으로 한다. PNG→WebP 변환과 히어로 640/960px, favicon·180px 터치 PNG는 별도 창작물로 합산하지 않았다. 로고 8개는 각각 매체·구성에 맞는 생산용 사용 형태이고, 삽화 12개는 각각 별도 생성 요청한 다른 설명 장면이다.
 
-자세한 용도와 적용 위치: [에셋 목록](PHASE4B_ASSET_INVENTORY.md). 실제 치수·용량·alpha·SHA-256: [manifest](public/assets/illustrations/phase4b/asset-manifest.json).
+자세한 용도와 적용 위치: [에셋 목록](PHASE4B_ASSET_INVENTORY.md). 실제 치수·용량·alpha·SHA-256: [manifest](../../public/assets/illustrations/phase4b/asset-manifest.json).
 
 ## 3. 실제 생성과 원본 보관
 
@@ -102,7 +105,7 @@ PC의 짧은 소개와 시작 버튼은 가운데에 모아 넓은 화면에서�
 
 `verify-phase4b.mjs`는 320/375/390/430/768/1024/1440px에서 홈·사진·채널·설명·결과·빈 기록의 **42개 화면 상태**를 확인했다. 이미지 누락과 가로 넘침이 없고, 실제 표시된 본문 버튼이 44px 이상이며 첫 주 행동이 화면 상단 700px 안에 있다. 삽화 12개를 실제 렌더링한 URL로 모두 확인했다. 파일 존재·manifest만으로 통합을 판단하지 않았다.
 
-42개 상태와 시각 위계의 기록: [verification.json](ui-review/phase4b-final/verification.json). 대표 증거: [모바일 첫 화면](ui-review/phase4b-final/home-first-screen-390.png), [모바일 홈 전체](ui-review/phase4b-final/home-390.png), [모바일 사진](ui-review/phase4b-final/photo-320.png), [설명 입력](ui-review/phase4b-final/details-320.png), [PC 결과](ui-review/phase4b-final/results-1440.png), [빈 상태](ui-review/phase4b-final/records-empty-390.png). 실제 PNG를 열어 서비스 비중·문구·여백·이미지 비례를 검토했다.
+42개 상태와 시각 위계의 기록: [verification.json](../../ui-review/phase4b-final/verification.json). 대표 증거: [모바일 첫 화면](../../ui-review/phase4b-final/home-first-screen-390.png), [모바일 홈 전체](../../ui-review/phase4b-final/home-390.png), [모바일 사진](../../ui-review/phase4b-final/photo-320.png), [설명 입력](../../ui-review/phase4b-final/details-320.png), [PC 결과](../../ui-review/phase4b-final/results-1440.png), [빈 상태](../../ui-review/phase4b-final/records-empty-390.png). 실제 PNG를 열어 서비스 비중·문구·여백·이미지 비례를 검토했다.
 
 긴 페이지 캡처에 고정 하단 메뉴가 중간에 찍히는 것은 최초 viewport의 고정 위치가 포함되는 캡처 특성이다. 첫 사진 선택의 실제 가림은 별도로 `elementFromPoint`로 검사했다. 처음의 화면 전환 도중 찍힌 흐린 캡처는 안정된 전환 뒤 다시 캡처했다.
 
@@ -137,7 +140,7 @@ PC의 짧은 소개와 시작 버튼은 가운데에 모아 넓은 화면에서�
 
 최종 검증 상태도 `../.phase4b-verified-20261010-final/files/`와 `baseline.json`에 별도로 보관한다. 제작 스크립트는 이미 만들어진 복원 지점을 덮어쓰지 않도록 보호하며, 사본과 원본의 해시가 일치하는지 확인한다.
 
-`StepProgress`, 알림 Provider·설정, 채널 계약, Canvas 줄바꿈, package·Vite·AGENTS는 시작 기준과 일치한다. 이전 삽화와 5개 로고 탐색안도 보존했다. 사용자 수정 `HASE4B_MASTER.md`는 다시 전체를 읽고 반영했다. `DESIGN_MASTER.md`의 ‘system’이 ‘sys tem’으로 바뀐 공백 차이도 되돌리지 않았다. 지침 변경을 우리 코드 변경 목록으로 합산하지 않았다. [완료 근거 검사](ui-review/phase4b-final/completion-audit.json)에 실제 변경 목록을 기록했다.
+`StepProgress`, 알림 Provider·설정, 채널 계약, Canvas 줄바꿈, package·Vite·AGENTS는 시작 기준과 일치한다. 이전 삽화와 5개 로고 탐색안도 보존했다. 사용자 수정 `HASE4B_MASTER.md`는 다시 전체를 읽고 반영했다. `DESIGN_MASTER.md`의 ‘system’이 ‘sys tem’으로 바뀐 공백 차이도 되돌리지 않았다. 지침 변경을 우리 코드 변경 목록으로 합산하지 않았다. [완료 근거 검사](../../ui-review/phase4b-final/completion-audit.json)에 실제 변경 목록을 기록했다.
 
 ## 10. 완료 기준 확인과 한계
 
@@ -161,6 +164,6 @@ Windows headless Edge에서 검증했다. 실물 iOS/Android, VoiceOver/TalkBack
 - [실제 서비스](http://127.0.0.1:5173/)
 - [20개 에셋 모음](http://127.0.0.1:5173/brand-library/index.html)
 - [에셋 목록](PHASE4B_ASSET_INVENTORY.md)
-- [실제 프롬프트·원본 폴더](design-assets/illustrations/phase4b/)
+- [실제 프롬프트·원본 폴더](../../design-assets/illustrations/phase4b)
 
 이번 Phase 4-B의 브랜드 확장과 실제 UI 통합 범위는 완료했다.
