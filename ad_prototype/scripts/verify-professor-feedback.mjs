@@ -102,6 +102,9 @@ try {
     await page.getByRole("button", { name: "메뉴 열기", exact: true }).click()
     const menu = page.getByRole("dialog", { name: "설정 및 이용 안내" })
     await menu.waitFor()
+    // The one-viewport compact form is the regular mode; large text may scroll.
+    const easySwitch = menu.getByRole("switch", { name: "간편모드", exact: true })
+    if (await easySwitch.getAttribute("aria-checked") === "true") await easySwitch.click()
     assert.equal(await menu.locator(".studio-menu-row").count(), 0)
     assert.equal(await menu.locator(".menu-creation-shortcuts button").count(), 4)
     assert.ok(await menu.getByText("사용 방법", { exact: true }).isVisible())
@@ -150,6 +153,12 @@ try {
     await page
       .getByRole("textbox", { name: "강조할 특징", exact: true })
       .fill("따뜻한 빵과 커피를 편안하게 즐겨요.")
+    const requirements = page.locator('.compact-information .field-requirement')
+    assert.deepEqual(await requirements.allTextContents(), ['선택', '필수', '필수'])
+    for (const hint of await requirements.all()) assert.ok(await hint.isVisible())
+    await page.getByLabel('가게·제품 이름', { exact: true }).fill('')
+    assert.ok(await page.getByRole('button', { name: '이 내용으로 결과 보기', exact: true }).isEnabled())
+    await page.getByLabel('가게·제품 이름', { exact: true }).fill('행복한 카페')
     await page.evaluate(() => scrollTo(0, 0))
     await capture(page, "information", width)
     if (width >= 1024) {

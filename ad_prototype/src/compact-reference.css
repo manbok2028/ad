@@ -15,6 +15,7 @@
 .studio-shell .compact-information .details-fields > label { font-size: 18px; line-height: 1.4; }
 .studio-shell .compact-information .details-fields > label > :is(input,textarea) { display: block; }
 .studio-shell .compact-information .details-fields > label > .field-hint { display: none; }
+.studio-shell .compact-information .field-requirement { display:inline-block; font-size:16px; font-weight:400; color:var(--color-muted); white-space:nowrap; }
 .studio-shell .compact-information .details-fields > label > input { min-height: 50px; height: 50px; padding: 10px 12px; font-size: 18px; font-weight: 400; margin-top: 6px; }
 .studio-shell .compact-information .details-fields > label > textarea { min-height: 72px; height: 72px; padding: 10px 12px; font-size: 18px; font-weight: 400; line-height: 1.5; margin-top: 6px; resize: vertical; }
 .studio-shell .compact-information > .mt-7 { margin-top: 12px; }
@@ -23,6 +24,12 @@
 .prototype-app.studio-shell.has-creation-view .compact-information .mobile-primary-bar.details-primary-bar { padding: 0; position: static; }
 .studio-shell .compact-information .details-primary-bar > button { min-height: 52px; padding: 10px 14px; font-size: 18px; }
 .studio-shell .compact-information > .mt-7 > button { min-height: 44px; padding: 8px 14px; font-size: 17px; }
+.studio-shell.easy-mode .compact-information .details-fields > label { font-size: 22px; }
+.studio-shell.easy-mode .compact-information .details-fields > label > input { font-size: 22px; height: 60px; min-height: 60px; }
+.studio-shell.easy-mode .compact-information .details-fields > label > textarea { font-size: 22px; line-height: 1.5; height: 96px; min-height: 96px; }
+.studio-shell.easy-mode .compact-information .details-primary-bar > button { font-size: 22px; min-height: 60px; }
+.studio-shell.easy-mode .information-more-settings > summary { font-size: 20px; min-height: 48px; }
+.studio-shell.easy-mode .copy-result-text { font-size: 22px; line-height: 1.65; }
 .studio-shell.has-creation-view .journey-progress { margin-bottom: 12px; }
 .studio-shell.has-creation-view .journey-node { width: 32px; height: 32px; font-size: 18px; border-width: 1px; }
 .studio-shell.has-creation-view .journey-node svg { width: 18px; height: 18px; }
@@ -75,6 +82,8 @@
 .studio-shell .menu-creation-shortcuts p { font-size:15px; line-height:1.5; margin:0 0 12px; }
 .studio-shell .menu-creation-shortcuts > div { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
 .studio-shell .menu-creation-shortcuts button { display:flex; align-items:center; justify-content:center; gap:6px; min-height:48px; padding:8px 6px; border:1px solid var(--color-line); border-radius:10px; color:var(--color-ink); background:#fff; font-size:16px; font-weight:700; }
+.studio-shell .menu-creation-shortcuts button > svg { flex-shrink:0; }
+.studio-shell .menu-creation-shortcuts button > span { min-width:0; word-break:keep-all; overflow-wrap:break-word; }
 .studio-shell .menu-creation-shortcuts button:hover { background:#fff4e8; border-color:#b96522; }
 @media (min-width:1024px) {
  .studio-shell.has-creation-view main[data-app-scroll-container] { padding-top:12px; }

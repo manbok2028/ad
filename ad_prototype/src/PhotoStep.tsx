@@ -1,4 +1,4 @@
-import type { ChangeEvent } from "react"
+import { useState, type ChangeEvent } from "react"
 import Icon from "./Icon"
 import ChannelPicker from "./ChannelPicker"
 import ServiceArt from "./ServiceArt"
@@ -37,6 +37,7 @@ export default function PhotoStep({
   onChannel: (channel: Channel) => void
   onNext: () => void
 }) {
+  const [destinationOpen, setDestinationOpen] = useState(false)
   const input = (
     <input
       id="product-photo"
@@ -92,7 +93,18 @@ export default function PhotoStep({
             )}
           </div>
           {message && (
-            <p id="upload-feedback" className="upload-feedback" role="status">
+            <p
+              id="upload-feedback"
+              className={`upload-feedback ${
+                pending
+                  ? "is-pending"
+                  : message === "사진이 준비됐어요."
+                    ? "is-success"
+                    : "is-error"
+              }`}
+              role="status"
+              aria-atomic="true"
+            >
               {pending && <span className="activity-dot" aria-hidden="true" />}
               {message}
             </p>
@@ -191,13 +203,16 @@ export default function PhotoStep({
           </div>
         </details>
       </div>
-      <details className="destination-settings">
+      <details
+        className="destination-settings"
+        onToggle={(event) => setDestinationOpen(event.currentTarget.open)}
+      >
         <summary>
           <span>
             홍보할 곳 고르기 <small>선택 사항</small>
           </span>
           <strong>{channelNames[channel]}</strong>
-          <span className="details-action">열기 / 닫기</span>
+          <span className="details-action">{destinationOpen ? "접기" : "펼치기"}</span>
         </summary>
         <ChannelPicker value={channel} onChange={onChannel} />
       </details>
